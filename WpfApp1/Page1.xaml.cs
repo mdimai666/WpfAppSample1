@@ -25,18 +25,29 @@ namespace WpfApp1
 
         Page1ViewModel viewModel;
 
-        public Page1(PostItem post)
+        public Page1(PostItem post = null)
         {
             InitializeComponent();
 
             DataContext = viewModel = new Page1ViewModel();
 
-            viewModel.Item = PostItem.GenerateRandomList(1).First();
+            if (post == null)
+                viewModel.Item = PostItem.GenerateRandomList(1).First();
+            else
+                viewModel.Item = post;
         }
 
+        
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             App.GoBack();
+        }
+
+        private void ClickFavorite2(object sender, RoutedEventArgs e)
+        {
+            PostItem post = (sender as Button).DataContext as PostItem;
+
+
         }
     }
 }

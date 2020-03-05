@@ -4,11 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1"
+      xmlns:controls="clr-namespace:WpfApp1.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
 
-    <Grid Background="White">
+    <Grid Background="White" DataContext="{Binding Item}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
@@ -19,9 +20,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Label Content="123" Grid.Row="0" Grid.Column="1" FontSize="30"/>
 
         <Button Content="Back" Click="BackButton_Click" />
+        
+        <Label Content="{Binding Title}" Grid.Row="0" Grid.Column="1" FontSize="30"/>
 
         <Border Grid.Row="1" Grid.Column="1" BorderThickness="2" BorderBrush="Black" Background="AliceBlue">
             <StackPanel >
@@ -29,7 +31,12 @@
                     <Label Content="Favorite" FontWeight="Bold" />
                     <Label Content="{Binding Favorite}" />
                 </StackPanel>
+
+                <controls:StarredButton Favorite="{Binding Favorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        DataContext="{Binding .}"
+                                        Title="{Binding Title}" OnFavoriteClick="ClickFavorite2" />
             </StackPanel>
+            
         </Border>
 
     </Grid>
