@@ -8,4 +8,4 @@ App.GoBack();
 - custom user control
 - data binding
 - listview with viewModel and ObservableCollection
- -simple model with binding
+- simple model with binding
